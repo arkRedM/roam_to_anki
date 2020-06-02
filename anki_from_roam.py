@@ -18,10 +18,10 @@ def create_tag_string(tag_l):
 
 
 def create_cloze_if_pattern_match(s, tags):
-    matches = re.findall(r'\[(\s*\w+)\]', s)
+    matches = re.findall(r'(?<=\[).+?(?=\])', s)
     tmp = s
     i = 1
-    if (not "TODO" in matches):
+    if (not "[TODO" in matches):
         for ma in matches:
             tmp = re.sub(re.escape("[" + ma +"]"), "{{c" + str(i) + "::" + ma + "}}", tmp)
             i = i + 1
